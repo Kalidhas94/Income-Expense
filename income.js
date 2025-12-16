@@ -196,3 +196,20 @@ function formatCurrency(value){
     if (e.key === 'Escape') clearForm();
   });
 });
+descriptionEl.addEventListener('input', () => {
+  const typedValue = descriptionEl.value.toLowerCase();
+  if (!typedValue) return;
+
+  const match = entries.find(en =>
+    en.description.toLowerCase().startsWith(typedValue)
+  );
+
+  if (match) {
+    descriptionEl.value = match.description;
+
+    descriptionEl.setSelectionRange(
+      typedValue.length,
+      match.description.length
+    );
+  }
+});
